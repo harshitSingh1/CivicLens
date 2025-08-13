@@ -1,12 +1,17 @@
-// frontend\src\services\api.ts
+// src/services/api.ts
 import axios from 'axios';
 
+const isDevelopment = import.meta.env.MODE === 'development';
+const baseURL = isDevelopment 
+  ? import.meta.env.VITE_API_URL 
+  : import.meta.env.VITE_API_URL_PROD || import.meta.env.VITE_API_URL;
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: baseURL || 'http://localhost:5000/api',
   withCredentials: true,
 });
 
-// Request interceptor
+// Rest of your interceptors remain the same...
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {
@@ -15,7 +20,6 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Response interceptor
 api.interceptors.response.use(
   (response) => response,
   (error) => {
