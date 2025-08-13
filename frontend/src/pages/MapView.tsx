@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Search, MapPin, Clock, CheckCircle, AlertCircle, MessageSquare, Share2, ThumbsUp, X, Trash2 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { getIssues, upvoteIssue, addComment, deleteComment } from '../services/issues';
-import { Issue} from '../types';
+import { Issue } from '../types';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { toast } from 'react-hot-toast';
@@ -147,7 +147,7 @@ const MapView: React.FC = () => {
     // CORRECTED: Use the stored coordinates (GeoJSON format: [lng, lat])
     // but convert to Leaflet format: [lat, lng]
     const [lng, lat] = issue.location.coordinates;
-    coords = [lng, lat]; // This is the critical fix
+    coords = [lat, lng];
   }
 
   const marker = L.marker(coords, { 
@@ -273,9 +273,9 @@ const MapView: React.FC = () => {
   if (loading) return <div className="flex items-center justify-center h-screen">Loading...</div>;
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900 md:flex-row">
       {/* Sidebar */}
-      <div className="overflow-y-auto bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700 w-96 scrollbar-thin">
+      <div className="w-full overflow-y-auto bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700 md:w-96 scrollbar-thin">
         <div className="p-4">
           <h1 className="mb-4 text-xl font-bold dark:text-white">CivicLens Map</h1>
           
@@ -446,20 +446,27 @@ const MapView: React.FC = () => {
         {selectedIssue && (
           <div 
             ref={panelRef}
-            className="absolute z-10 max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 top-4 left-4 right-4 dark:border-gray-700 scrollbar-thin"
-            style={{ maxHeight: 'calc(100vh - 2rem)' }}
+            className="absolute left-0 right-0 z-10 w-full p-4 mx-4 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 top-4 md:mx-0 md:left-4 md:right-auto md:max-w-md dark:border-gray-700 scrollbar-thin"
+            style={{ 
+              maxHeight: 'calc(100vh - 8rem)',
+              bottom: '4rem'
+            }}
           >
-            <div className="flex items-start justify-between mb-2">
-              <h3 className="text-lg font-bold dark:text-white">{selectedIssue.title}</h3>
-              <button 
-                onClick={() => setSelectedIssue(null)}
-                className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+            <div className="flex flex-col h-full">
+              {/* Panel Header */}
+              <div className="flex items-start justify-between mb-2">
+                <h3 className="text-lg font-bold dark:text-white">{selectedIssue.title}</h3>
+                <button 
+                  onClick={() => setSelectedIssue(null)}
+                  className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
 
-            <div className="flex mb-2 space-x-2">
+            <div className="flex-1 overflow-y-auto">
+                {/* Status and Severity */}
+                <div className="flex mb-2 space-x-2">
               <span className={`text-xs px-2 py-1 rounded-full ${
                 selectedIssue.status === 'reported' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' :
                 selectedIssue.status === 'in-progress' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' :
@@ -481,93 +488,100 @@ const MapView: React.FC = () => {
             <p className="mb-3 text-sm text-gray-600 dark:text-gray-300">{selectedIssue.description}</p>
 
             {selectedIssue.images.length > 0 && (
-              <img
-                src={selectedIssue.images[0]}
-                alt="Issue"
-                className="object-cover w-full h-32 mb-3 rounded"
-              />
-            )}
+                  <img
+                    src={selectedIssue.images[0]}
+                    alt="Issue"
+                    className="object-cover w-full h-32 mb-3 rounded"
+                  />
+                )}
 
             <div className="flex items-center mb-3 text-sm text-gray-500 dark:text-gray-400">
-              <MapPin className="w-4 h-4 mr-1" />
-              {selectedIssue.location.address || `${selectedIssue.location.district}, ${selectedIssue.location.state}`}
-            </div>
+                  <MapPin className="w-4 h-4 mr-1" />
+                  {selectedIssue.location.address || `${selectedIssue.location.district}, ${selectedIssue.location.state}`}
+                </div>
 
             <button
-              onClick={() => handleViewOnMap(selectedIssue)}
-              className="w-full py-2 mb-3 text-white bg-blue-500 rounded-lg hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
-            >
-              View on Map
-            </button>
+                  onClick={() => handleViewOnMap(selectedIssue)}
+                  className="w-full py-2 mb-3 text-white bg-blue-500 rounded-lg hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
+                >
+                  View on Map
+                </button>
 
-            <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
-              <h4 className="mb-2 font-medium dark:text-white">Comments ({selectedIssue.comments.length})</h4>
+             {/* Comments Section - Made more responsive */}
+                <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
+                  <h4 className="mb-2 font-medium dark:text-white">Comments ({selectedIssue.comments.length})</h4>
 
-              <div className="mb-3 space-y-3 overflow-y-auto max-h-40 scrollbar-thin">
-                {selectedIssue.comments.map(comment => (
-                  <div key={comment._id} className="relative group">
-                    <div className="flex items-baseline justify-between">
-                      <div className="font-medium dark:text-white">
-                        {typeof comment.userId === 'object' ? comment.userId.name : 'Anonymous'}
-                        <span className="ml-2 text-xs font-normal text-gray-500 dark:text-gray-400">
-                          {new Date(comment.createdAt).toLocaleDateString()}, {new Date(comment.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
-                        </span>
+                  <div className="mb-3 space-y-3 max-h-[200px] overflow-y-auto scrollbar-thin">
+                    {selectedIssue.comments.map(comment => (
+                      <div key={comment._id} className="relative group">
+                        <div className="flex items-baseline justify-between">
+                          <div className="font-medium dark:text-white">
+                            {typeof comment.userId === 'object' ? comment.userId.name : 'Anonymous'}
+                            <span className="ml-2 text-xs font-normal text-gray-500 dark:text-gray-400">
+                              {new Date(comment.createdAt).toLocaleDateString()}, {new Date(comment.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                            </span>
+                          </div>
+                          {isAuthenticated && user && (
+                            (typeof comment.userId === 'object' 
+                              ? comment.userId._id === user._id 
+                              : comment.userId === user._id) && (
+                              <button
+                                onClick={() => handleDeleteComment(comment._id)}
+                                className="text-gray-400 transition-colors hover:text-red-500"
+                                title="Delete comment"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            )
+                          )}
+                        </div>
+                        <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{comment.text}</p>
                       </div>
-                      {isAuthenticated && user && (
-                        (typeof comment.userId === 'object' 
-                          ? comment.userId._id === user._id 
-                          : comment.userId === user._id) && (
-                          <button
-                            onClick={() => handleDeleteComment(comment._id)}
-                            className="text-gray-400 transition-colors hover:text-red-500"
-                            title="Delete comment"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        )
-                      )}
-                    </div>
-                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{comment.text}</p>
+                    ))}
                   </div>
-                ))}
+
+                  {/* Comment Input - Stays at bottom */}
+                  <div className="sticky bottom-0 pt-2 bg-white dark:bg-gray-800">
+                    <div className="flex space-x-2">
+                      <input
+                        type="text"
+                        placeholder="Add a comment..."
+                        className="flex-1 p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        value={newComment}
+                        onChange={(e) => setNewComment(e.target.value)}
+                        onKeyPress={(e) => e.key === 'Enter' && handleAddComment()}
+                      />
+                      <button
+                        onClick={handleAddComment}
+                        disabled={!newComment.trim()}
+                        className="px-4 py-2 text-white bg-blue-500 rounded-lg disabled:bg-gray-300 dark:bg-blue-600 dark:disabled:bg-gray-600"
+                      >
+                        Post
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="flex space-x-2">
-                <input
-                  type="text"
-                  placeholder="Add a comment..."
-                  className="flex-1 p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                  value={newComment}
-                  onChange={(e) => setNewComment(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleAddComment()}
-                />
-                <button
-                  onClick={handleAddComment}
-                  disabled={!newComment.trim()}
-                  className="px-4 py-2 text-white bg-blue-500 rounded-lg disabled:bg-gray-300 dark:bg-blue-600 dark:disabled:bg-gray-600"
-                >
-                  Post
-                </button>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between mt-3">
-              <div className="text-xs text-gray-500 dark:text-gray-400">
-                Reported {new Date(selectedIssue.createdAt).toLocaleDateString()} • {selectedIssue.upvotes.length} upvotes
-              </div>
-              <div className="flex space-x-2">
-                <button
-                  onClick={() => handleUpvote(selectedIssue._id)}
-                  className={`${selectedIssue.upvotes.includes(user?._id || '') ? 'text-blue-500' : 'text-gray-500 dark:text-gray-400'}`}
-                >
-                  <ThumbsUp className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => handleShare(selectedIssue)}
-                  className="text-gray-500 dark:text-gray-400"
-                >
-                  <Share2 className="w-4 h-4" />
-                </button>
+              {/* Footer with upvotes and share */}
+              <div className="flex items-center justify-between pt-3 mt-auto border-t border-gray-200 dark:border-gray-700">
+                <div className="text-xs text-gray-500 dark:text-gray-400">
+                  Reported {new Date(selectedIssue.createdAt).toLocaleDateString()} • {selectedIssue.upvotes.length} upvotes
+                </div>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => handleUpvote(selectedIssue._id)}
+                    className={`${selectedIssue.upvotes.includes(user?._id || '') ? 'text-blue-500' : 'text-gray-500 dark:text-gray-400'}`}
+                  >
+                    <ThumbsUp className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => handleShare(selectedIssue)}
+                    className="text-gray-500 dark:text-gray-400"
+                  >
+                    <Share2 className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
