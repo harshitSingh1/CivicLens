@@ -4,13 +4,14 @@
   "description": "Backend for CivicLens community-driven civic issue reporting platform",
   "main": "dist/server.js",
   "scripts": {
-    "start": "node dist/server.js",
-    "dev": "nodemon src/server.ts",
-    "build": "tsc",
-    "test": "jest",
-    "lint": "eslint . --ext .ts",
-    "format": "prettier --write \"src/**/*.ts\""
-  },
+  "start": "node dist/server.js",
+  "dev": "nodemon src/server.ts",
+  "build": "tsc",
+  "postinstall": "npm run build",
+  "test": "jest",
+  "lint": "eslint . --ext .ts",
+  "format": "prettier --write \"src/**/*.ts\""
+},
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cloudinary": "1.41.1",

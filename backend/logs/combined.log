@@ -1527,3 +1527,7 @@
 {"level":"info","message":"::1 - - [13/Aug/2025:03:34:33 +0000] \"GET /api/dashboard/stats HTTP/1.1\" 200 4841 \"http://localhost:5173/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36 Edg/139.0.0.0\"","timestamp":"2025-08-13T03:34:33.167Z"}
 {"level":"info","message":"MongoDB Connected: ac-si0kexr-shard-00-02.zgkporq.mongodb.net","timestamp":"2025-08-13T04:10:31.892Z"}
 {"level":"info","message":"Server running on port 5000","timestamp":"2025-08-13T04:10:31.908Z"}
+{"level":"info","message":"MongoDB Connected: ac-si0kexr-shard-00-01.zgkporq.mongodb.net","timestamp":"2025-08-13T05:02:48.092Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-08-13T05:02:48.102Z"}
+{"level":"info","message":"MongoDB Connected: ac-si0kexr-shard-00-00.zgkporq.mongodb.net","timestamp":"2025-08-13T05:16:38.319Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-08-13T05:16:38.331Z"}
