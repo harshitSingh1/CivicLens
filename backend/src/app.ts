@@ -22,6 +22,7 @@ app.use(cors({
     
     const allowedOrigins = [
       'http://localhost:5173',
+      'https://civiclens-frontend.onrender.com',
       config.frontendUrl
     ];
     
