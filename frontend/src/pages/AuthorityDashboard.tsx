@@ -85,6 +85,7 @@ const [formData, setFormData] = useState<FormData>({
 
   // Check if user is authorized
   useEffect(() => {
+     window.scrollTo(0, 0);
     if (!isAuthenticated) {
       navigate('/login');
     } else if (user?.role !== 'authority') {

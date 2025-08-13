@@ -20,7 +20,7 @@ const navItems = [
   { name: 'Dashboard', path: '/dashboard' },
   { name: 'Civic Updates', path: '/updates' },
   { name: 'About', path: '/about' },
-   ...(user?.role === 'authority' ? [{ name: 'Authority Dashboard', path: '/authority' }] : [])
+   ...(user?.role === 'authority' ? [{ name: 'Authority Pannel', path: '/authority' }] : [])
 ];
 
   const isActive = (path: string) => location.pathname === path;

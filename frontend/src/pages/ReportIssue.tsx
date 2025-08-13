@@ -52,6 +52,7 @@ const ReportIssue: React.FC = () => {
 
   // Check location permission status
   useEffect(() => {
+     window.scrollTo(0, 0);
     const checkPermission = async () => {
       try {
         if (navigator.permissions) {

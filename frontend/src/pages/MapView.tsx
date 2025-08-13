@@ -55,6 +55,7 @@ const MapView: React.FC = () => {
 
   // Fetch issues
   useEffect(() => {
+     window.scrollTo(0, 0);
     const fetchIssues = async () => {
       try {
         setLoading(true);

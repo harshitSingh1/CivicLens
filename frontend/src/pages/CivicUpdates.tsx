@@ -43,6 +43,7 @@ const CivicUpdates: React.FC = () => {
 
   // Fetch all civic updates
   useEffect(() => {
+     window.scrollTo(0, 0);
     const fetchUpdates = async () => {
       try {
         setLoading(true);

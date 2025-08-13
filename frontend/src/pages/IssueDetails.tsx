@@ -13,6 +13,7 @@ const IssueDetails: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+     window.scrollTo(0, 0);
     const fetchIssue = async () => {
       try {
         const data = await getIssueById(id!);
