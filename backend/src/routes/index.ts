@@ -3,6 +3,7 @@ import express from 'express';
 import authRoutes from './auth.routes';
 import issuesRoutes from './issues.routes';
 import civicUpdatesRoutes from './civicUpdates.routes';
+import contactRoutes from './contact.routes';
 import dashboardRoutes from './dashboard.routes';
 import { errorHandler } from '../middlewares/error.middleware';
 import usersRouter from './users.routes';
@@ -12,6 +13,7 @@ const router = express.Router();
 router.use('/auth', authRoutes);
 router.use('/issues', issuesRoutes);
 router.use('/civic-updates', civicUpdatesRoutes);
+router.use('/contact', contactRoutes);
 router.use('/dashboard', dashboardRoutes);
 router.use('/users', usersRouter);
 
