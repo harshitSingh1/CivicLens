@@ -1,12 +1,16 @@
 // src/pages/Register.tsx
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { User, Mail, Lock, Eye, EyeOff, Shield } from 'lucide-react';
 import Button from '../components/Button';
 import { useAuth } from '../contexts/AuthContext';
 
 const Register: React.FC = () => {
-  const [userType, setUserType] = useState<'user' | 'authority'>('user');
+  const [searchParams] = useSearchParams();
+  const [userType, setUserType] = useState<'user' | 'authority'>(
+    searchParams.get('type') === 'authority' ? 'authority' : 'user'
+  );
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -43,6 +47,10 @@ const Register: React.FC = () => {
       setLoading(false);
     }
   };
+  
+  useEffect(() => {
+     window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="flex items-center justify-center min-h-screen px-4 py-12 bg-gray-50 dark:bg-gray-900 sm:px-6 lg:px-8">

@@ -13,6 +13,7 @@ import { useTheme } from '../contexts/ThemeContext';
 import Button from '../components/Button';
 import api from '../services/api';
 import { toast } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 interface DashboardStats {
   totalIssues: number;
@@ -492,12 +493,14 @@ const Dashboard: React.FC = () => {
           <p className="max-w-2xl mx-auto mb-6 text-blue-100">
             Access advanced analytics, issue management tools, and citizen engagement metrics.
           </p>
-          <Button 
-            variant="outline" 
-            className="text-white border-white hover:bg-white hover:text-blue-600"
-          >
-            Request Authority Access
-          </Button>
+          <Link to="/register?type=authority">
+  <Button 
+    variant="outline" 
+    className="text-white border-white hover:bg-white hover:text-blue-600"
+  >
+    Request Authority Access
+  </Button>
+</Link>
         </div>
       </div>
     </div>

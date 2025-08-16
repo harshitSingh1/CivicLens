@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Users, Target, Lightbulb} from 'lucide-react';
 
 const About: React.FC = () => {
@@ -29,6 +29,10 @@ const About: React.FC = () => {
       answer: 'Yes, CivicLens is free for citizens to use. We offer premium features for local governments and organizations who want advanced analytics, custom integrations, and priority support.'
     }
   ];
+
+    useEffect(() => {
+       window.scrollTo(0, 0);
+    }, []);
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">

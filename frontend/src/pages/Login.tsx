@@ -1,5 +1,5 @@
 // src/pages/Login.tsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import Button from '../components/Button';
@@ -35,6 +35,10 @@ const Login: React.FC = () => {
       setLoading(false);
     }
   };
+
+    useEffect(() => {
+       window.scrollTo(0, 0);
+    }, []);
 
   return (
     <div className="flex items-center justify-center min-h-screen px-4 py-12 bg-gray-50 dark:bg-gray-900 sm:px-6 lg:px-8">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Trophy, Star, Medal, Award, Crown, Zap, Calendar, Users, TrendingUp } from 'lucide-react';
+import { Trophy, Star, Medal, Award, Crown, Zap, Users } from 'lucide-react';
 import { mockUsers } from '../data/mockData';
 import Button from '../components/Button';
 
@@ -128,21 +128,21 @@ const Community: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-8 bg-gray-50 dark:bg-gray-900">
+      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="mb-12 text-center">
+          <h1 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
             Community Hub
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="max-w-3xl mx-auto text-xl text-gray-600 dark:text-gray-300">
             Connect with fellow citizens, earn rewards, and make your community a better place to live.
           </p>
         </div>
 
         {/* Navigation Tabs */}
         <div className="flex justify-center mb-8">
-          <nav className="flex space-x-8 bg-white dark:bg-gray-800 rounded-lg p-1 shadow-sm border border-gray-200 dark:border-gray-700">
+          <nav className="flex p-1 space-x-8 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
             {[
               { id: 'leaderboard', label: 'Leaderboard', icon: Trophy },
               { id: 'badges', label: 'Badges', icon: Award },
@@ -157,7 +157,7 @@ const Community: React.FC = () => {
                     : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
                 }`}
               >
-                <tab.icon className="h-4 w-4 mr-2" />
+                <tab.icon className="w-4 h-4 mr-2" />
                 {tab.label}
               </button>
             ))}
@@ -168,7 +168,7 @@ const Community: React.FC = () => {
         {activeTab === 'leaderboard' && (
           <div>
             <div className="flex justify-center mb-8">
-              <div className="flex space-x-2 bg-white dark:bg-gray-800 rounded-lg p-1 shadow-sm border border-gray-200 dark:border-gray-700">
+              <div className="flex p-1 space-x-2 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
                 {(['weekly', 'monthly', 'all-time'] as const).map((range) => (
                   <Button
                     key={range}
@@ -183,14 +183,14 @@ const Community: React.FC = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               {/* Top 3 */}
               <div className="lg:col-span-2">
-                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-8">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6 text-center">
+                <div className="p-8 bg-white border border-gray-200 shadow-sm dark:bg-gray-800 rounded-xl dark:border-gray-700">
+                  <h3 className="mb-6 text-xl font-semibold text-center text-gray-900 dark:text-white">
                     Top Contributors
                   </h3>
-                  <div className="flex justify-center items-end space-x-4 mb-8">
+                  <div className="flex items-end justify-center mb-8 space-x-4">
                     {sortedUsers.slice(0, 3).map((user, index) => {
                       const position = index + 1;
                       const heights = ['h-32', 'h-40', 'h-28'];
@@ -206,16 +206,16 @@ const Community: React.FC = () => {
                             <img
                               src={user.avatar}
                               alt={user.name}
-                              className="w-16 h-16 rounded-full mx-auto mb-2 border-4 border-white"
+                              className="w-16 h-16 mx-auto mb-2 border-4 border-white rounded-full"
                             />
-                            <div className="text-white font-bold">#{position}</div>
+                            <div className="font-bold text-white">#{position}</div>
                           </div>
-                          <div className="bg-white dark:bg-gray-700 p-3 rounded-b-lg border-x border-b border-gray-200 dark:border-gray-600">
+                          <div className="p-3 bg-white border-b border-gray-200 rounded-b-lg dark:bg-gray-700 border-x dark:border-gray-600">
                             <Trophy className={`h-6 w-6 mx-auto mb-1 ${trophyColors[index]}`} />
-                            <div className="font-semibold text-gray-900 dark:text-white text-sm">
+                            <div className="text-sm font-semibold text-gray-900 dark:text-white">
                               {user.name}
                             </div>
-                            <div className="text-blue-600 dark:text-blue-400 font-bold">
+                            <div className="font-bold text-blue-600 dark:text-blue-400">
                               {user.points} pts
                             </div>
                           </div>
@@ -228,17 +228,17 @@ const Community: React.FC = () => {
 
               {/* Full Leaderboard */}
               <div className="lg:col-span-1">
-                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                <div className="p-6 bg-white border border-gray-200 shadow-sm dark:bg-gray-800 rounded-xl dark:border-gray-700">
+                  <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
                     Full Rankings
                   </h3>
                   <div className="space-y-3">
                     {sortedUsers.map((user, index) => {
                       const levelInfo = getLevelInfo(user.level);
                       return (
-                        <div key={user.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <div key={user.id} className="flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-gray-700">
                           <div className="flex items-center space-x-3">
-                            <div className="text-lg font-bold text-gray-500 dark:text-gray-400 w-6">
+                            <div className="w-6 text-lg font-bold text-gray-500 dark:text-gray-400">
                               #{index + 1}
                             </div>
                             <img
@@ -276,8 +276,8 @@ const Community: React.FC = () => {
         {/* Badges Tab */}
         {activeTab === 'badges' && (
           <div>
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            <div className="mb-8 text-center">
+              <h2 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white">
                 Achievement Badges
               </h2>
               <p className="text-gray-600 dark:text-gray-300">
@@ -285,9 +285,9 @@ const Community: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {badges.map((badge) => (
-                <div key={badge.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+                <div key={badge.id} className="p-6 bg-white border border-gray-200 shadow-sm dark:bg-gray-800 rounded-xl dark:border-gray-700">
                   <div className="flex items-center justify-between mb-4">
                     <div className={`p-3 rounded-lg ${badge.bgColor}`}>
                       <badge.icon className={`h-6 w-6 ${badge.color}`} />
@@ -297,11 +297,11 @@ const Community: React.FC = () => {
                     </span>
                   </div>
                   
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
                     {badge.name}
                   </h3>
                   
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                  <p className="mb-4 text-sm text-gray-600 dark:text-gray-300">
                     {badge.description}
                   </p>
                   
@@ -322,8 +322,8 @@ const Community: React.FC = () => {
         {/* Challenges Tab */}
         {activeTab === 'challenges' && (
           <div>
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            <div className="mb-8 text-center">
+              <h2 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white">
                 Community Challenges
               </h2>
               <p className="text-gray-600 dark:text-gray-300">
@@ -331,31 +331,31 @@ const Community: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
               {challenges.map((challenge) => (
-                <div key={challenge.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+                <div key={challenge.id} className="p-6 bg-white border border-gray-200 shadow-sm dark:bg-gray-800 rounded-xl dark:border-gray-700">
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                      <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
                         {challenge.title}
                       </h3>
                       <p className="text-gray-600 dark:text-gray-300">
                         {challenge.description}
                       </p>
                     </div>
-                    <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 px-3 py-1 rounded-full text-sm font-medium">
+                    <span className="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-100 rounded-full dark:bg-blue-900/20 dark:text-blue-400">
                       {challenge.timeLeft} left
                     </span>
                   </div>
 
                   <div className="mb-4">
-                    <div className="flex justify-between text-sm text-gray-600 dark:text-gray-300 mb-2">
+                    <div className="flex justify-between mb-2 text-sm text-gray-600 dark:text-gray-300">
                       <span>Progress</span>
                       <span>{challenge.progress}/{challenge.target}</span>
                     </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                    <div className="w-full h-2 bg-gray-200 rounded-full dark:bg-gray-700">
                       <div 
-                        className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                        className="h-2 transition-all duration-300 bg-blue-600 rounded-full"
                         style={{ width: `${(challenge.progress / challenge.target) * 100}%` }}
                       ></div>
                     </div>
@@ -363,10 +363,10 @@ const Community: React.FC = () => {
 
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
-                      <Users className="h-4 w-4" />
+                      <Users className="w-4 h-4" />
                       <span>{challenge.participants} participants</span>
                     </div>
-                    <div className="text-sm text-green-600 dark:text-green-400 font-medium">
+                    <div className="text-sm font-medium text-green-600 dark:text-green-400">
                       Reward: {challenge.reward}
                     </div>
                   </div>

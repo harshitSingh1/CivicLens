@@ -1,5 +1,5 @@
 // src/pages/Contact.tsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import Button from '../components/Button';
 import api from '../services/api';
@@ -40,6 +40,10 @@ const Contact: React.FC = () => {
       setIsSubmitting(false);
     }
   };
+
+    useEffect(() => {
+       window.scrollTo(0, 0);
+    }, []);
 
   return (
     <div className="min-h-screen py-12 bg-gray-50 dark:bg-gray-900">
