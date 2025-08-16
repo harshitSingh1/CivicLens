@@ -21,6 +21,7 @@ import IssueDetails from './pages/IssueDetails';
 import CivicUpdates from './pages/CivicUpdates';
 import AuthorityDashboard from './pages/AuthorityDashboard';
 import AuthorizedRoute from './components/AuthorizedRoute';
+import Contact from './pages/Contact';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/updates" element={<CivicUpdates />} />
+                <Route path="/contact" element={<Contact />} />
                 
                 {/* Protected routes */}
                 <Route element={<ProtectedRoute />}>

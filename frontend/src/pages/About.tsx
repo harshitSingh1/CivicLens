@@ -1,48 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Users, Target, Lightbulb, Send } from 'lucide-react';
-import Button from '../components/Button';
+import { Users, Target, Lightbulb} from 'lucide-react';
 
 const About: React.FC = () => {
-  const [contactForm, setContactForm] = React.useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setContactForm(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Contact form submitted:', contactForm);
-    alert('Thank you for your message! We\'ll get back to you soon.');
-    setContactForm({ name: '', email: '', subject: '', message: '' });
-  };
-
-  const team = [
-    {
-      name: 'Alex Johnson',
-      role: 'CEO & Co-Founder',
-      bio: 'Former city planner with 10+ years in urban development and civic technology.',
-      image: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=300&h=300'
-    },
-    {
-      name: 'Sarah Chen',
-      role: 'CTO & Co-Founder',
-      bio: 'AI researcher and full-stack developer passionate about using technology for social good.',
-      image: 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=300&h=300'
-    },
-    {
-      name: 'Marcus Rodriguez',
-      role: 'Head of Community',
-      bio: 'Community organizer with extensive experience in civic engagement and public policy.',
-      image: 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=300&h=300'
-    }
-  ];
 
   const faqs = [
     {
@@ -74,12 +33,12 @@ const About: React.FC = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+      <section className="py-20 text-white bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800">
+        <div className="px-4 mx-auto text-center max-w-7xl sm:px-6 lg:px-8">
+          <h1 className="mb-6 text-4xl font-bold md:text-5xl">
             About CivicLens
           </h1>
-          <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+          <p className="max-w-3xl mx-auto text-xl text-blue-100 md:text-2xl">
             We're on a mission to bridge the gap between citizens and local governments, 
             making communities more responsive, transparent, and engaged.
           </p>
@@ -88,42 +47,42 @@ const About: React.FC = () => {
 
       {/* Mission & Vision */}
       <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
             <div className="text-center">
-              <div className="bg-blue-100 dark:bg-blue-900/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Target className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+              <div className="flex items-center justify-center w-16 h-16 mx-auto mb-6 bg-blue-100 rounded-full dark:bg-blue-900/20">
+                <Target className="w-8 h-8 text-blue-600 dark:text-blue-400" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              <h3 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
                 Our Mission
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+              <p className="leading-relaxed text-gray-600 dark:text-gray-300">
                 To empower citizens with technology that makes reporting and resolving 
                 community issues faster, more transparent, and more engaging than ever before.
               </p>
             </div>
 
             <div className="text-center">
-              <div className="bg-green-100 dark:bg-green-900/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Lightbulb className="h-8 w-8 text-green-600 dark:text-green-400" />
+              <div className="flex items-center justify-center w-16 h-16 mx-auto mb-6 bg-green-100 rounded-full dark:bg-green-900/20">
+                <Lightbulb className="w-8 h-8 text-green-600 dark:text-green-400" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              <h3 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
                 Our Vision
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+              <p className="leading-relaxed text-gray-600 dark:text-gray-300">
                 A world where every community member has a voice in shaping their 
                 neighborhood, and where local governments can respond quickly and effectively.
               </p>
             </div>
 
             <div className="text-center">
-              <div className="bg-purple-100 dark:bg-purple-900/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="h-8 w-8 text-purple-600 dark:text-purple-400" />
+              <div className="flex items-center justify-center w-16 h-16 mx-auto mb-6 bg-purple-100 rounded-full dark:bg-purple-900/20">
+                <Users className="w-8 h-8 text-purple-600 dark:text-purple-400" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              <h3 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
                 Our Values
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+              <p className="leading-relaxed text-gray-600 dark:text-gray-300">
                 Transparency, community engagement, and using technology as a force for 
                 positive social change in communities worldwide.
               </p>
@@ -134,34 +93,34 @@ const About: React.FC = () => {
 
       {/* Story Section */}
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="max-w-4xl px-4 mx-auto sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
               How CivicLens Started
             </h2>
           </div>
           
-          <div className="prose prose-lg dark:prose-invert mx-auto">
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+          <div className="mx-auto prose prose-lg dark:prose-invert">
+            <p className="mb-6 leading-relaxed text-gray-600 dark:text-gray-300">
               CivicLens was born from frustration. Our founders, Alex and Sarah, lived in a neighborhood 
               where potholes went unfixed for months, broken streetlights created safety hazards, and 
               residents felt disconnected from their local government.
             </p>
             
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+            <p className="mb-6 leading-relaxed text-gray-600 dark:text-gray-300">
               Traditional 311 systems were outdated, hard to use, and provided little feedback. 
               Citizens would report issues into a black hole, never knowing if their concerns were 
               being addressed. Meanwhile, local governments struggled with outdated technology and 
               limited resources to track and prioritize community needs.
             </p>
             
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+            <p className="mb-6 leading-relaxed text-gray-600 dark:text-gray-300">
               We realized that AI and modern web technology could bridge this gap. By automatically 
               categorizing issues, providing real-time updates, and gamifying civic engagement, 
               we could create a platform that benefits both citizens and local governments.
             </p>
             
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            <p className="leading-relaxed text-gray-600 dark:text-gray-300">
               Today, CivicLens is used in over 50 cities, has helped resolve thousands of community 
               issues, and continues to grow as more communities discover the power of engaged, 
               tech-enabled civic participation.
@@ -170,46 +129,12 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Meet Our Team
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
-              The people behind CivicLens are passionate about civic technology and community building.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {team.map((member, index) => (
-              <div key={index} className="text-center">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
-                />
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                  {member.name}
-                </h3>
-                <p className="text-blue-600 dark:text-blue-400 font-medium mb-4">
-                  {member.role}
-                </p>
-                <p className="text-gray-600 dark:text-gray-300">
-                  {member.bio}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* FAQ Section */}
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="max-w-4xl px-4 mx-auto sm:px-6 lg:px-8">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
               Frequently Asked Questions
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">
@@ -219,11 +144,11 @@ const About: React.FC = () => {
 
           <div className="space-y-8">
             {faqs.map((faq, index) => (
-              <div key={index} className="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-sm border border-gray-200 dark:border-gray-700">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              <div key={index} className="p-8 bg-white border border-gray-200 shadow-sm dark:bg-gray-900 rounded-xl dark:border-gray-700">
+                <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
                   {faq.question}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="leading-relaxed text-gray-600 dark:text-gray-300">
                   {faq.answer}
                 </p>
               </div>
@@ -232,156 +157,7 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Get in Touch
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
-              Have questions, feedback, or want to bring CivicLens to your community?
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Info */}
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
-                  Contact Information
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex items-center">
-                    <Mail className="h-6 w-6 text-blue-600 dark:text-blue-400 mr-4" />
-                    <div>
-                      <p className="font-medium text-gray-900 dark:text-white">Email</p>
-                      <p className="text-gray-600 dark:text-gray-300">hello@civiclens.com</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <Phone className="h-6 w-6 text-blue-600 dark:text-blue-400 mr-4" />
-                    <div>
-                      <p className="font-medium text-gray-900 dark:text-white">Phone</p>
-                      <p className="text-gray-600 dark:text-gray-300">+1 (555) 123-4567</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin className="h-6 w-6 text-blue-600 dark:text-blue-400 mr-4" />
-                    <div>
-                      <p className="font-medium text-gray-900 dark:text-white">Address</p>
-                      <p className="text-gray-600 dark:text-gray-300">
-                        123 Innovation Drive<br />
-                        Tech City, TC 12345
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6">
-                <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">
-                  For Local Governments
-                </h4>
-                <p className="text-blue-800 dark:text-blue-200 mb-4">
-                  Interested in implementing CivicLens in your city? We'd love to show you how 
-                  our platform can help improve citizen engagement and streamline issue resolution.
-                </p>
-                <Link to="/contact/government">
-                  <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">
-                    Schedule a Demo
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-8">
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
-                Send us a Message
-              </h3>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      value={contactForm.name}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                      placeholder="Your name"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      value={contactForm.email}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Subject *
-                  </label>
-                  <select
-                    id="subject"
-                    name="subject"
-                    required
-                    value={contactForm.subject}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                  >
-                    <option value="">Select a topic</option>
-                    <option value="general">General Inquiry</option>
-                    <option value="support">Technical Support</option>
-                    <option value="partnership">Partnership Opportunity</option>
-                    <option value="government">Government Implementation</option>
-                    <option value="press">Press & Media</option>
-                    <option value="feedback">Feedback & Suggestions</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={6}
-                    value={contactForm.message}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                    placeholder="Tell us how we can help you..."
-                  />
-                </div>
-
-                <Button type="submit" className="w-full" size="lg">
-                  <Send className="h-4 w-4 mr-2" />
-                  Send Message
-                </Button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
+      
     </div>
   );
 };
