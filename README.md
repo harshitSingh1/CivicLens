@@ -2,7 +2,7 @@
 
 **Website:** https://civiclens-frontend.onrender.com/
 
-CivicLens lets you report neighborhood issues like potholes or broken streetlights—just snap a photo and drop a pin on the map. Local authorities can also post alerts about hazards, road work, or new projects, so you stay informed. Track reports in real-time and see what’s being fixed around you.
+**Empowering citizens to transform neighborhoods through AI-driven issue reporting and real-time civic updates**
 
 ## 🚀 The Problem: Broken Civic Feedback Loops
 
