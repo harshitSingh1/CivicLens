@@ -23,6 +23,10 @@ app.use((0, cors_1.default)({
             return callback(null, true);
         const allowedOrigins = [
             'http://localhost:5173',
+<<<<<<< HEAD
+=======
+            'https://civiclens-frontend.onrender.com',
+>>>>>>> IssuePage
             env_1.default.frontendUrl
         ];
         if (allowedOrigins.some(allowed => origin.startsWith(allowed))) {
