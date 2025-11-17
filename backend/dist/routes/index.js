@@ -8,10 +8,7 @@ const express_1 = __importDefault(require("express"));
 const auth_routes_1 = __importDefault(require("./auth.routes"));
 const issues_routes_1 = __importDefault(require("./issues.routes"));
 const civicUpdates_routes_1 = __importDefault(require("./civicUpdates.routes"));
-<<<<<<< HEAD
-=======
 const contact_routes_1 = __importDefault(require("./contact.routes"));
->>>>>>> IssuePage
 const dashboard_routes_1 = __importDefault(require("./dashboard.routes"));
 const error_middleware_1 = require("../middlewares/error.middleware");
 const users_routes_1 = __importDefault(require("./users.routes"));
@@ -19,10 +16,7 @@ const router = express_1.default.Router();
 router.use('/auth', auth_routes_1.default);
 router.use('/issues', issues_routes_1.default);
 router.use('/civic-updates', civicUpdates_routes_1.default);
-<<<<<<< HEAD
-=======
 router.use('/contact', contact_routes_1.default);
->>>>>>> IssuePage
 router.use('/dashboard', dashboard_routes_1.default);
 router.use('/users', users_routes_1.default);
 // Error handling middleware
