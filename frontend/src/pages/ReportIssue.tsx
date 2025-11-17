@@ -16,7 +16,7 @@ const analyzeImageWithAI = async (imageFile: File): Promise<{
   try {
     // Using Hugging Face's image classification API (free tier)
     const API_URL = 'https://api-inference.huggingface.co/models/google/vit-base-patch16-224';
-    const API_TOKEN = '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';
+    const API_TOKEN = import.meta.env.VITE_HUGGINGFACE_TOKEN || '';
 
     const formData = new FormData();
     formData.append('file', imageFile);
