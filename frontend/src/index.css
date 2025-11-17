@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply transition-colors duration-200;
+  }
+  
+  body {
+    @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-200;
+  }
+}
+
+/* Custom scrollbars */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.dark .scrollbar-thin::-webkit-scrollbar-track {
+  background: #374151;
+}
+.dark .scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #6b7280;
+}
+.dark .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Improved scrollbar styling */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 dark:bg-gray-600 rounded-full;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+/* Better mobile touch targets */
+@media (max-width: 768px) {
+  button, [role="button"], input, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}

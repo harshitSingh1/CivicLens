@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: civiclens-backend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm run dev
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URI
+        fromDatabase:
+          name: civiclens-db
+          property: connectionString
